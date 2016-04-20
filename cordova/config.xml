@@ -10,6 +10,6 @@
     <content src="package.json" />
     <access origin="*" />
      <platform name="android">
-        <icon src="logo.png" />
+        <icon src="src/logo.png" />
     </platform>
 </widget>
