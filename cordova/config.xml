@@ -10,6 +10,9 @@
     <content src="package.json" />
     <access origin="*" />
      <platform name="android">
-        <icon src="src/logo.png" />
+        <icon src="logo.png" />
     </platform>
+    <plugin name="cordova-plugin-dialogs" />
+    <plugin name="cordova-plugin-inappbrowser" />
+    <plugin name="cordova-plugin-network-information" />
 </widget>
