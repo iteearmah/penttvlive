@@ -1,0 +1,8 @@
+{
+  "name": "penttvlive",
+  "description": "Pent TV Live | It's all about Jesus",
+  "main": "src/mainapp.js",
+  "dependencies": {
+    "tabris": "^1.7.0"
+  }
+}
