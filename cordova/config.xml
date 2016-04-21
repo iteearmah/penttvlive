@@ -15,5 +15,5 @@
     <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-network-information" />
-    <plugin name="https://github.com/apache/cordova-plugin-media.git" />
+    <plugin name="https://github.com/nchutchind/cordova-plugin-streaming-media.git" />
 </widget>

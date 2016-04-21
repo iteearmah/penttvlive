@@ -26,9 +26,11 @@ var createTab = function(title, image) {
 var tvTab=createTab('TV',IMAGE_PATH+'widescreen-tv-48.png');
 var tvnewsTab=createTab('News',IMAGE_PATH+'news-48.png');
 
-new tabris.Video({
+/*new tabris.Video({
   layoutData: {left: 0, right: 0, top: 0, bottom: 0},
-  url: "http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_1mb.mp4"
-}).appendTo(tvTab);
-
+  url: "http://peach.themazzone.com/durian/movies/sintel-1280-stereo.mp4"
+}).appendTo(tvTab);*/
+var my_media = new Media();
+my_media.playVideo('http://peach.themazzone.com/durian/movies/sintel-1280-stereo.mp4');
+my_media.play();
 page.open();
