@@ -27,46 +27,46 @@ exports.getfeaturedNews=function (json_url,image_size,margin,featuredNewsArea){
       }).on("select", function(target, value) {
         console.log("selected", value.title);
       }).appendTo(featuredNewsArea);
-      load_featurednews(featuredNewsList,'featured_newsdx3',json_url);
+      //load_featurednews(featuredNewsList,'featured_newsdxvv3s',json_url);
+      fetch_featuredNews(featuredNewsList,json_url,'featured_news_test4');
 }
 
-function fetch_featuredNews(json_url,targt_page,key)
+function fetch_featuredNews(view,json_url,key)
 {
-   var xhr = new tabris.XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === xhr.DONE) {
-     newsItems_str=xhr.responseText;
-     localStorage.setItem(key,newsItems_str);
-    }
-  };
-  xhr.open("GET", json_url +'?'+ new Date().getTime());
-  xhr.send();
-  return localStorage.getItem(key);
+  var $ = require("./lib/jquery.js");
+  var items = [];
+  $.ajaxSetup({ cache:false });
+  $.ajax({
+    url: json_url,
+    dataType: 'json',
+    //timeout: 5000,
+    success:  function (data) {
+          localStorage.setItem(key,JSON.stringify(data));
+          load_featurednews(view,data,key);
+          },error: function(data, errorThrown)
+          {
+             console.log('news not fetched'+errorThrown);
+          }
+  });
+
 }
 
-function load_featurednews(view,key,json_url)
+function load_featurednews(view,featuredNewsData,key)
 {
-  featurednewsitems=JSON.parse(localStorage.getItem(key));
-  if(featurednewsitems)
-  {
+  console.log('OUT: '+JSON.stringify(featuredNewsData));
+  featuredNewsData=JSON.parse(localStorage.getItem(key));
+    view.set({
+      items: featuredNewsData,
+      refreshIndicator: true,
+      refreshMessage: ""
+    });
+  
+  featurednewsitems=featuredNewsData;
+  setTimeout(function() {
     view.set({
       items: featurednewsitems,
       refreshIndicator: false,
-      refreshMessage: ""
+      refreshMessage: "loading..."
     });
-  }
-  else
-  {
-    featurednewsitems=fetch_featuredNews(json_url,view,key);
-    console.log(featurednewsitems);
-    setTimeout(function() {
-      view.set({
-        items: JSON.parse(featurednewsitems),
-        refreshIndicator: false,
-        refreshMessage: "loading..."
-      });
-    }, 3000);
-  }
-  
- 
+  }, 3000);
 }

@@ -28,46 +28,44 @@ exports.getNewsList=function (json_url,image_size,margin,targt_page){
 				}).on("refresh", function() {
 				  load_news(featuredNewsList,'news_list',json_url);
 			}).appendTo(targt_page);
-		load_news(featuredNewsList,'news_list',json_url);
+		fetch_newslist(featuredNewsList,json_url,'news_list_test');
 }
 
-function fetch_newslist(json_url,targt_page,key)
+function fetch_newslist(view,json_url,key)
 {
-	 var xhr = new tabris.XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === xhr.DONE) {
-     newsItems_str=xhr.responseText;
-     localStorage.setItem(key,newsItems_str);
+	 var $ = require("./lib/jquery.js");
+  var items = [];
+  $.ajaxSetup({ cache:false });
+  $.ajax({
+    url: json_url,
+    dataType: 'json',
+    //timeout: 5000,
+    success:  function (data) {
+          localStorage.setItem(key,JSON.stringify(data));
+          load_news(view,data,key);
+          },error: function(data, errorThrown)
+          {
+             console.log('news not fetched'+errorThrown);
+          }
+  });
+}
 
-    }
-  };
-  xhr.open("GET", json_url +'?'+ new Date().getTime());
-  xhr.send();
+function load_news(view,newsData,key)
+{
+  console.log('OUT: '+JSON.stringify(newsData));
+  newsitems=JSON.parse(localStorage.getItem(key));
+    view.set({
+      items: newsitems,
+      refreshIndicator: true,
+      refreshMessage: ""
+    });
   
-  return localStorage.getItem(key);
-}
-
-function load_news(view,key,json_url)
-{
-	newsitems=JSON.parse(localStorage.getItem(key));
-	if(newsitems)
-	{
-		 view.set({
-      items: newsitems ,
+  newsitems=newsData;
+  setTimeout(function() {
+    view.set({
+      items: newsitems,
       refreshIndicator: false,
       refreshMessage: "loading..."
- 	 });
-	}
-	else
-	{
-		 newsitems=fetch_newslist(json_url,view,key);
-	   setTimeout(function() {
-	    view.set({
-	      items: JSON.parse(newsitems),
-	      refreshIndicator: true,
-	      refreshMessage: "loading.."
-	    });
-	  }, 3000);
-	}
- 
+    });
+  }, 3000);
 }
