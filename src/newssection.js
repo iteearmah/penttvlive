@@ -63,8 +63,8 @@ function load_news(view,key,json_url)
   setTimeout(function() {
     view.set({
       items: JSON.parse(newsitems),
-      refreshIndicator: false,
-      refreshMessage: ""
+      refreshIndicator: true,
+      refreshMessage: "loading.."
     });
-  }, 1000);
+  }, 3000);
 }

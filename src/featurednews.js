@@ -48,11 +48,15 @@ function load_featurednews(view,key,json_url)
 {
   view.set({
       items: JSON.parse(localStorage.getItem(key)),
+      refreshIndicator: true,
+      refreshMessage: "loading..."
   });
   featurednewsitems=fetch_featuredNews(json_url,view,key);
   setTimeout(function() {
     view.set({
       items: JSON.parse(featurednewsitems),
+      refreshIndicator: true,
+      refreshMessage: "loading..."
     });
-  }, 1000);
+  }, 3000);
 }
