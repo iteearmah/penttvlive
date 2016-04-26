@@ -49,22 +49,25 @@ function fetch_newslist(json_url,targt_page,key)
 
 function load_news(view,key,json_url)
 {
-  view.set({
-      items: JSON.parse(localStorage.getItem(key)),
-      refreshIndicator: true,
+	newsitems=JSON.parse(localStorage.getItem(key));
+	if(newsitems)
+	{
+		 view.set({
+      items: newsitems ,
+      refreshIndicator: false,
       refreshMessage: "loading..."
-  });
-	/*view.set({
-    refreshIndicator: false,
-    refreshMessage: "loading..."
-  });*/
-  newsitems=fetch_newslist(json_url,view,key);
-  
-  setTimeout(function() {
-    view.set({
-      items: JSON.parse(newsitems),
-      refreshIndicator: true,
-      refreshMessage: "loading.."
-    });
-  }, 3000);
+ 	 });
+	}
+	else
+	{
+		 newsitems=fetch_newslist(json_url,view,key);
+	   setTimeout(function() {
+	    view.set({
+	      items: JSON.parse(newsitems),
+	      refreshIndicator: true,
+	      refreshMessage: "loading.."
+	    });
+	  }, 3000);
+	}
+ 
 }

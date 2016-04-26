@@ -27,7 +27,7 @@ exports.getfeaturedNews=function (json_url,image_size,margin,featuredNewsArea){
       }).on("select", function(target, value) {
         console.log("selected", value.title);
       }).appendTo(featuredNewsArea);
-      load_featurednews(featuredNewsList,'featured_news',json_url);
+      load_featurednews(featuredNewsList,'featured_newsdx3',json_url);
 }
 
 function fetch_featuredNews(json_url,targt_page,key)
@@ -46,17 +46,27 @@ function fetch_featuredNews(json_url,targt_page,key)
 
 function load_featurednews(view,key,json_url)
 {
-  view.set({
-      items: JSON.parse(localStorage.getItem(key)),
-      refreshIndicator: true,
-      refreshMessage: "loading..."
-  });
-  featurednewsitems=fetch_featuredNews(json_url,view,key);
-  setTimeout(function() {
+  featurednewsitems=JSON.parse(localStorage.getItem(key));
+  if(featurednewsitems)
+  {
     view.set({
-      items: JSON.parse(featurednewsitems),
-      refreshIndicator: true,
-      refreshMessage: "loading..."
+      items: featurednewsitems,
+      refreshIndicator: false,
+      refreshMessage: ""
     });
-  }, 3000);
+  }
+  else
+  {
+    featurednewsitems=fetch_featuredNews(json_url,view,key);
+    console.log(featurednewsitems);
+    setTimeout(function() {
+      view.set({
+        items: JSON.parse(featurednewsitems),
+        refreshIndicator: false,
+        refreshMessage: "loading..."
+      });
+    }, 3000);
+  }
+  
+ 
 }
