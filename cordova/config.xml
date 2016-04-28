@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ruarch.penttvlive" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Pent TV Live</name>
+    <name>PentTV</name>
     <description>
-       Pent TV Live | It's all about Jesus
+       Pent TV  - It's all about Jesus
     </description>
     <author email="iteearmah@gmail.com" href="http://ruarch.net">
         Samuel Armah

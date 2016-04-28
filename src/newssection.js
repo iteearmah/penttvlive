@@ -1,6 +1,6 @@
-exports.getNewsList=function (json_url,image_size,margin,targt_page){
+exports.getNewsList=function (json_url,image_size,margin,targt_page,detail_page){
 
-     var featuredNewsList = tabris.create("CollectionView", {
+     var newsList = tabris.create("CollectionView", {
         layoutData: {left:0, right: 0, bottom: 0},
         refreshEnabled: true,
         itemHeight: 120,
@@ -26,9 +26,15 @@ exports.getNewsList=function (json_url,image_size,margin,targt_page){
           });
 				  }
 				}).on("refresh", function() {
-				  load_news(featuredNewsList,'news_list',json_url);
+				  fetch_newslist(newsList,json_url,'news_list_test');
 			}).appendTo(targt_page);
-		fetch_newslist(featuredNewsList,json_url,'news_list_test');
+		fetch_newslist(newsList,json_url,'news_list_test');
+
+    newsList.on("select", function(target, value) {
+       var newsDetailPage=detail_page.news_readPage(value);
+        newsDetailPage.set('title',value.title+' - News');
+        newsDetailPage.open();
+    });
 }
 
 function fetch_newslist(view,json_url,key)
@@ -52,7 +58,6 @@ function fetch_newslist(view,json_url,key)
 
 function load_news(view,newsData,key)
 {
-  console.log('OUT: '+JSON.stringify(newsData));
   newsitems=JSON.parse(localStorage.getItem(key));
     view.set({
       items: newsitems,

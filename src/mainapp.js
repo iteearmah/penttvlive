@@ -2,7 +2,9 @@ var utils=require("./utils.js");
 var drawerModule=require("./drawer.js");
 var featuredNews=require("./featurednews.js");
 var newsSection=require("./newssection.js");
-//console.log(JSON.stringify(utils.newsItems()));
+var newsDetails=require("./news-details.js");
+
+
 var newsItems=utils.newsItems();
 var IMAGE_PATH='src/images/';
 var PAGE_MARGIN = 16;
@@ -16,20 +18,22 @@ var page = new tabris.Page({
   title: "PentTV",
   topLevel: true
 });
-var drawer = new tabris.Drawer();
+/*var drawer = new tabris.Drawer();
+drawer.append(new tabris.PageSelector());*/
 
-var drawerImage = tabris.create("ImageView", {
+/*var drawerImage = tabris.create("ImageView", {
    image: IMAGE_PATH+'ppeett.jpg',
   scaleMode: "fill",
   layoutData: {left: 0, right: 0, top: 0, height: 200}
-}).appendTo(drawer);
-drawerModule.leftSlideMenu(drawerImage,drawer);
+}).appendTo(drawer);*/
+//drawerModule.leftSlideMenu(drawerImage,drawer);
 tabris.ui.set("background", "#0032D5");
 
 var tabFolder = tabris.create("TabFolder", {
   left: 0, top: 0, right: 0, bottom: 0,
   background: "#0032D5",
   textColor: "white",
+   paging: true,
   elevation: 4
 }).appendTo(page);
  
@@ -55,15 +59,16 @@ var featuredNewsArea = new tabris.Composite({
   background: "#fff"
 }).appendTo(tvTab);
 
+
 /**
  * Get the homepage featured news
  */
-featuredNews.getfeaturedNews(FEATURED_NEWS_URL,IMAGE_SIZE,MARGIN,featuredNewsArea);
-newsSection.getNewsList(NEWS_URL,IMAGE_SIZE,MARGIN,tvNewsTab);
-/*var webview = new tabris.WebView({
-	url: "http://penttvlive.com/app.video.html",
-  layoutData: {left: 0, top:0, right: 0, bottom: "50%"}
-}).appendTo(tvPlayerArea);*/
+featuredNews.getfeaturedNews(FEATURED_NEWS_URL,IMAGE_SIZE,MARGIN,featuredNewsArea,newsDetails);
+newsSection.getNewsList(NEWS_URL,IMAGE_SIZE,MARGIN,tvNewsTab,newsDetails);
+var webview = new tabris.WebView({
+	url: "http://penttvlive.com/app.video.html?"+new Date().getTime(),
+  layoutData: {left: 0, top:0, right: 0, bottom: 0}
+}).appendTo(tvPlayerArea);
 
 
 /*new tabris.Video({
@@ -71,5 +76,5 @@ newsSection.getNewsList(NEWS_URL,IMAGE_SIZE,MARGIN,tvNewsTab);
   url: "http://peach.themazzone.com/durian/movies/sintel-1280-stereo.mp4"
 }).appendTo(tvTab);*/
 //window.plugins.streamingMedia.playVideo('rtmp://edge2.tikilive.com:1935/unrestricted_tikilive/41915?i=YXBwTmFtZT1VbnJlc3RyaWN0ZWQmY0lEPTQxOTE1JmNOYW1lPVBlbnQrVFYrTGl2ZSZvSUQ9MTQ5ODY3Jm9OYW1lPXBlbnR0dmFkbWlu/0Bm7VxnMvO8k');
- 
+
 page.open();

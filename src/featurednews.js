@@ -1,4 +1,4 @@
-exports.getfeaturedNews=function (json_url,image_size,margin,featuredNewsArea){
+exports.getfeaturedNews=function (json_url,image_size,margin,featuredNewsArea,detail_page){
 
      var featuredNewsList = tabris.create("CollectionView", {
         layoutData: {left:0, right: 0, bottom: 0},
@@ -25,10 +25,15 @@ exports.getfeaturedNews=function (json_url,image_size,margin,featuredNewsArea){
           });
         }
       }).on("select", function(target, value) {
-        console.log("selected", value.title);
+       // console.log("selected", value.title);
       }).appendTo(featuredNewsArea);
       //load_featurednews(featuredNewsList,'featured_newsdxvv3s',json_url);
       fetch_featuredNews(featuredNewsList,json_url,'featured_news_test4');
+      featuredNewsList.on("select", function(target, value) {
+       var newsDetailPage=detail_page.news_readPage(value);
+        newsDetailPage.set('title',value.title+' - News');
+        newsDetailPage.open();
+    });
 }
 
 function fetch_featuredNews(view,json_url,key)
@@ -53,7 +58,6 @@ function fetch_featuredNews(view,json_url,key)
 
 function load_featurednews(view,featuredNewsData,key)
 {
-  console.log('OUT: '+JSON.stringify(featuredNewsData));
   featuredNewsData=JSON.parse(localStorage.getItem(key));
     view.set({
       items: featuredNewsData,
