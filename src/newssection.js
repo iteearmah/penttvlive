@@ -26,9 +26,9 @@ exports.getNewsList=function (json_url,image_size,margin,targt_page,detail_page)
           });
 				  }
 				}).on("refresh", function() {
-				  fetch_newslist(newsList,json_url,'news_list_test');
+				  fetch_newslist(newsList,json_url,'news_list');
 			}).appendTo(targt_page);
-		fetch_newslist(newsList,json_url,'news_list_test');
+		fetch_newslist(newsList,json_url,'news_list');
 
     newsList.on("select", function(target, value) {
        var newsDetailPage=detail_page.news_readPage(value);

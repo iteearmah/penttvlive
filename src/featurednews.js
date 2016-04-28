@@ -28,7 +28,7 @@ exports.getfeaturedNews=function (json_url,image_size,margin,featuredNewsArea,de
        // console.log("selected", value.title);
       }).appendTo(featuredNewsArea);
       //load_featurednews(featuredNewsList,'featured_newsdxvv3s',json_url);
-      fetch_featuredNews(featuredNewsList,json_url,'featured_news_test4');
+      fetch_featuredNews(featuredNewsList,json_url,'featured_news');
       featuredNewsList.on("select", function(target, value) {
        var newsDetailPage=detail_page.news_readPage(value);
         newsDetailPage.set('title',value.title+' - News');
