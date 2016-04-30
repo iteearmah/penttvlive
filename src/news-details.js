@@ -12,7 +12,7 @@ exports.news_readPage=function(newsItem)
 
 
 	var scrollView = new tabris.ScrollView({
-	  left: 0, right: 0, top: 0, bottom: 0
+	  left: 0, right: 0, top: 0, bottom: 50
 	}).appendTo(newsDetailpage);
 
 	var imageView = new tabris.ImageView({
@@ -44,7 +44,7 @@ exports.news_readPage=function(newsItem)
 	}).appendTo(titleComposite);
 
 	var contentComposite = new tabris.Composite({
-	  left: 0, right: 0, top: "#titleComposite", 
+	  left: 0, right: 0, top: "#titleComposite",
 	  background: "white"
 	}).appendTo(scrollView);
 

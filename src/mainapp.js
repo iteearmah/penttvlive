@@ -18,6 +18,9 @@ var page = new tabris.Page({
   title: "PentTV",
   topLevel: true
 });
+
+admob.initAdmob("ca-app-pub-3282562808664310/2431822278","ca-app-pub-3282562808664310/5267537477");
+admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
 /*var drawer = new tabris.Drawer();
 drawer.append(new tabris.PageSelector());*/
 

@@ -1,7 +1,7 @@
 exports.getNewsList=function (json_url,image_size,margin,targt_page,detail_page){
 
      var newsList = tabris.create("CollectionView", {
-        layoutData: {left:0, right: 0, bottom: 0},
+        layoutData: {left:0, right: 0, bottom: 50},
         refreshEnabled: true,
         itemHeight: 120,
         initializeCell: function(cell) {
