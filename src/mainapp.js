@@ -4,7 +4,6 @@ var featuredNews=require("./featurednews.js");
 var newsSection=require("./newssection.js");
 var newsDetails=require("./news-details.js");
 
-
 var newsItems=utils.newsItems();
 var IMAGE_PATH='src/images/';
 var PAGE_MARGIN = 16;
@@ -18,7 +17,25 @@ var page = new tabris.Page({
   title: "PentTV",
   topLevel: true
 });
+var a = new tabris.Page({
 
+});
+ // Android customization
+    cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
+    // Enable background mode
+    cordova.plugins.backgroundMode.enable();
+
+    // Called when background mode has been activated
+    cordova.plugins.backgroundMode.onactivate = function () {
+        setTimeout(function () {
+            console.log('background');
+            // Modify the currently displayed notification
+            cordova.plugins.backgroundMode.configure({
+                text:'Running in background for more than 5s now.'
+            });
+        }, 5000);
+    }
+cordova.plugins.backgroundMode.ondeactivate = function() {console.log('background deactivated');};
 admob.initAdmob("ca-app-pub-3282562808664310/2431822278","ca-app-pub-3282562808664310/5267537477");
 admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
 /*var drawer = new tabris.Drawer();

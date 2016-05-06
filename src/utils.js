@@ -31,3 +31,5 @@ exports.newsItems=function ()
 });*/
 return fetchedNewsJson;
 }
+
+
