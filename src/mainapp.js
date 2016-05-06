@@ -42,7 +42,6 @@ var tabFolder = tabris.create("TabFolder", {
  
 var createTab = function(title, image) {
   var tabObj=tabris.create("Tab", {
-    title: title,
     image: {src: image},
     background: "#fff"
   }).appendTo(tabFolder);
