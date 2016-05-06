@@ -16,6 +16,6 @@
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-network-information" />
     <plugin name="https://github.com/admob-google/admob-cordova.git" />
-    <plugin name="https://github.com/cmackay/google-analytics-plugin.git" />
     <plugin name="https://github.com/nchutchind/cordova-plugin-streaming-media.git" />
+    <plugin name="https://github.com/katzer/cordova-plugin-background-mode.git" />
 </widget>
