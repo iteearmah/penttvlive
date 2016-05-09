@@ -12,7 +12,7 @@ var MARGIN = 12;
 var MARGIN_LARGE = 24;
 var FEATURED_NEWS_URL='http://penttvlive.com/wp-api/json/featured_news.json';
 var NEWS_URL='http://penttvlive.com/wp-api/json/news.json';
-navigator.splashscreen.show();
+//navigator.splashscreen.show();
 var page = new tabris.Page({
   title: "PentTV",
   topLevel: true
