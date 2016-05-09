@@ -12,7 +12,7 @@ var MARGIN = 12;
 var MARGIN_LARGE = 24;
 var FEATURED_NEWS_URL='http://penttvlive.com/wp-api/json/featured_news.json';
 var NEWS_URL='http://penttvlive.com/wp-api/json/news.json';
-
+navigator.splashscreen.show();
 var page = new tabris.Page({
   title: "PentTV",
   topLevel: true
@@ -35,7 +35,7 @@ var a = new tabris.Page({
             });
         }, 5000);
     }
-cordova.plugins.backgroundMode.ondeactivate = function() {console.log('background deactivated');};
+cordova.plugins.backgroundMode.ondeactivate = function() {console.log('background deactivated');}
 admob.initAdmob("ca-app-pub-3282562808664310/2431822278","ca-app-pub-3282562808664310/5267537477");
 admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
 /*var drawer = new tabris.Drawer();
@@ -97,3 +97,4 @@ var webview = new tabris.WebView({
 //window.plugins.streamingMedia.playVideo('rtmp://edge2.tikilive.com:1935/unrestricted_tikilive/41915?i=YXBwTmFtZT1VbnJlc3RyaWN0ZWQmY0lEPTQxOTE1JmNOYW1lPVBlbnQrVFYrTGl2ZSZvSUQ9MTQ5ODY3Jm9OYW1lPXBlbnR0dmFkbWlu/0Bm7VxnMvO8k');
 
 page.open();
+navigator.splashscreen.hide();
