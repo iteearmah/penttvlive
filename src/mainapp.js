@@ -20,7 +20,7 @@ var page = new tabris.Page({
 var a = new tabris.Page({
 
 });
- /*// Android customization
+ // Android customization
     cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
     // Enable background mode
     cordova.plugins.backgroundMode.enable();
@@ -37,7 +37,7 @@ var a = new tabris.Page({
     }
 cordova.plugins.backgroundMode.ondeactivate = function() {
   console.log('background deactivated');
-}*/
+}
 
 /*
 tabris.app.on("pause", function() {
@@ -51,9 +51,9 @@ console.log('background deactivated');
 cordova.plugins.backgroundMode.disable();
 });*/
 cordova.plugins.backgroundMode.enable();
-cordova.plugins.backgroundMode.ondeactivate = function () {
+/*cordova.plugins.backgroundMode.ondeactivate = function () {
   console.log('Here');
-}
+}*/
 
 admob.initAdmob("ca-app-pub-3282562808664310/2431822278","ca-app-pub-3282562808664310/5267537477");
 admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);
