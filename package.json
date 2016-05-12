@@ -3,6 +3,6 @@
   "description": "Pent TV | It's all about Jesus",
   "main": "src/mainapp.js",
   "dependencies": {
-    "tabris": "^1.7.0"
+    "tabris": "https://tabrisjs.com/downloads/nightly/tabris.tgz"
   }
 }
