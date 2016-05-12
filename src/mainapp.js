@@ -20,7 +20,7 @@ var page = new tabris.Page({
 var a = new tabris.Page({
 
 });
- // Android customization
+/* // Android customization
     cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
     // Enable background mode
     cordova.plugins.backgroundMode.enable();
@@ -37,7 +37,7 @@ var a = new tabris.Page({
     }
 cordova.plugins.backgroundMode.ondeactivate = function() {
   console.log('background deactivated');
-}
+}*/
 
 /*
 tabris.app.on("pause", function() {
@@ -50,10 +50,22 @@ tabris.app.on("resume", function() {
 console.log('background deactivated');
 cordova.plugins.backgroundMode.disable();
 });*/
-cordova.plugins.backgroundMode.enable();
+//cordova.plugins.backgroundMode.enable();
 /*cordova.plugins.backgroundMode.ondeactivate = function () {
   console.log('Here');
 }*/
+tabris.app.on("pause", function() {
+   
+    setTimeout(function(){ 
+    cordova.plugins.notification.badge.configure({ title: '%d news feeds available' });
+    cordova.plugins.notification.badge.configure({ smallIcon: 'ic_action_star' });
+    cordova.plugins.notification.badge.configure({ autoClear: true });
+    cordova.plugins.notification.badge.set(update_count);
+    navigator.notification.beep(1);
+
+    }, 3000);
+    
+});
 
 admob.initAdmob("ca-app-pub-3282562808664310/2431822278","ca-app-pub-3282562808664310/5267537477");
 admob.showBanner(admob.BannerSize.BANNER,admob.Position.BOTTOM_CENTER);

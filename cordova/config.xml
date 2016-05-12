@@ -15,10 +15,12 @@
     <plugin name="cordova-plugin-dialogs" />
     <plugin name="cordova-plugin-inappbrowser" />
     <plugin name="cordova-plugin-network-information" />
+    <plugin name="de.appplant.cordova.plugin.badge" />
     <plugin name="https://github.com/admob-google/admob-cordova.git" />
     <plugin name="https://github.com/nchutchind/cordova-plugin-streaming-media.git" />
-    <plugin name="https://github.com/katzer/cordova-plugin-background-mode.git" />
+    <plugin name="https://github.com/katzer/cordova-plugin-background-mode.git" />de.appplant.cordova.plugin.badge
     <plugin name="https://github.com/apache/cordova-plugin-splashscreen.git" />
+
     <platform name="android">
      <splash src="splash-screen.png"/>
     </platform>
